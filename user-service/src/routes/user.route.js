@@ -9,7 +9,7 @@ router.get('/', UserController.getAll);
 
 router.get('/:id', validate(UserValidation.id.paramsSchema, 'params'), UserController.getById);
 
-router.post('/', validate(UserValidation.create.bodySchema), UserController.create);
+router.post('/register', validate(UserValidation.create.bodySchema), UserController.create);
 
 router.put('/:id', validate(UserValidation.update.bodySchema), UserController.update);
 
