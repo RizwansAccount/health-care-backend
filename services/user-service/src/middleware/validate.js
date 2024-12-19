@@ -1,4 +1,4 @@
-import { httpResponse } from "../../../utils/index.js";
+import { httpResponse } from "../../../../utils/index.js";
 
 export const validate = (schema, source = 'body') => {
     return (req, res, next) => {

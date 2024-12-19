@@ -1,5 +1,5 @@
 import { UserService } from "../services/index.js";
-import { httpResponse } from "../../../utils/index.js";
+import { httpResponse } from "../../../../utils/index.js";
 
 export const UserController = {
     getAll: async (req, res) => {

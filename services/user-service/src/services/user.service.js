@@ -2,7 +2,7 @@ import { CodeServiceModel, UserModel } from "../models/index.js";
 import passwordHash from 'password-hash';
 import jwt from 'jsonwebtoken';
 import config from '../config/index.js';
-import { transporterEmail, getMailOptions, getRandomCode } from '../../../utils/code-verification.js';
+import { transporterEmail, getMailOptions, getRandomCode } from '../../../../utils/index.js';
 
 export const UserService = {
     getAll: async () => {

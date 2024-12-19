@@ -1,10 +1,10 @@
-import { AppointMentService } from "../services/index.js";
-import { httpResponse } from "../../../utils/index.js";
+import { TimeSlotService } from "../services/index.js";
+import { httpResponse } from "../../../../utils/index.js";
 
-export const AppointmentController = {
+export const TimeSlotContainer = {
     getAll: async (req, res) => {
         try {
-            const data = await AppointMentService.getAll();
+            const data = await TimeSlotService.getAll();
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));
@@ -13,7 +13,7 @@ export const AppointmentController = {
     getById: async (req, res) => {
         try {
             const id = req.params.id;
-            const data = await AppointMentService.getById(id);
+            const data = await TimeSlotService.getById(id);
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));
@@ -22,7 +22,7 @@ export const AppointmentController = {
     create: async (req, res) => {
         try {
             const body = req.body;
-            const data = await AppointMentService.create(body);
+            const data = await TimeSlotService.create(body);
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));
@@ -32,7 +32,7 @@ export const AppointmentController = {
         try {
             const id = req.params.id;
             const body = req.body;
-            const data = await AppointMentService.update(id, body);
+            const data = await TimeSlotService.update(id, body);
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));
@@ -41,7 +41,7 @@ export const AppointmentController = {
     delete: async (req, res) => {
         try {
             const id = req.params.id;
-            const data = await AppointMentService.delete(id);
+            const data = await TimeSlotService.delete(id);
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));
