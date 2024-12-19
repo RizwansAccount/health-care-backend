@@ -1,0 +1,23 @@
+{
+  "name": "health-care-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:user-service": "nodemon user-service/index.js",
+    "dev:appointment-service": "nodemon appointment-service/index.js",
+    "dev:all": "concurrently \"npm run dev:user-service\" \"npm run dev:appointment-service\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "nodemailer": "^6.9.16"
+  }
+}
