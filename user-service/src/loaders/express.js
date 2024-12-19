@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { protectedRouter, unProtectedRouter } from "../routes/index.js";
-import { authenticate } from "../middleware/index.js";
+import { unProtectedRouter } from "../routes/index.js";
 
 export default async function expressLoader({ app }) {
 	app.use(cors());
@@ -12,5 +11,4 @@ export default async function expressLoader({ app }) {
 	app.use(express.urlencoded({ extended : true }));
 
 	app.use("/api/users", unProtectedRouter);
-	app.use("/api/users", authenticate, protectedRouter);
 }

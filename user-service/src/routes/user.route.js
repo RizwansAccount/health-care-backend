@@ -1,28 +1,30 @@
 import express from "express";
 import { UserController } from "../controllers/user.controller.js";
+import { validate } from "../middleware/index.js";
+import { UserValidation } from "../validations/user.validation.js";
 
 const router = express.Router();
 
 router.get('/', UserController.getAll);
 
-router.get('/:id', UserController.getById);
+router.get('/:id', validate(UserValidation.id.paramsSchema, 'params'), UserController.getById);
 
-router.post('/', UserController.create);
+router.post('/', validate(UserValidation.create.bodySchema), UserController.create);
 
-router.put('/:id', UserController.update);
+router.put('/:id', validate(UserValidation.update.bodySchema), UserController.update);
 
-router.delete('/:id', UserController.delete);
+router.delete('/:id', validate(UserValidation.id.paramsSchema, 'params'), UserController.delete);
 
-router.post('/login', UserController.login);
+router.post('/login', validate(UserValidation.login.bodySchema), UserController.login);
 
-router.post('/change-password', UserController.changePassword);
+router.post('/change-password', validate(UserValidation.changePassword.bodySchema), UserController.changePassword);
 
-router.post('/forgot-password', UserController.forgotPassword);
+router.post('/forgot-password', validate(UserValidation.email.bodySchema), UserController.forgotPassword);
 
-router.post('/resend-code', UserController.resendCode);
+router.post('/resend-code', validate(UserValidation.email.bodySchema), UserController.resendCode);
 
-router.post('/verify-code', UserController.verifyCode);
+router.post('/verify-code', validate(UserValidation.verifyCode.bodySchema), UserController.verifyCode);
 
-router.post('/new-password', UserController.newPassword);
+router.post('/new-password', validate(UserValidation.newPassword.bodySchema), UserController.newPassword);
 
 export default router;
