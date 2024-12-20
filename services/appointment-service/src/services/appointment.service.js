@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { AppointmentModel, TimeSlotModel } from "../models/index.js";
+import { AppointmentModel, TimeSlotModel } from "../../../../models/index.js";
 
 export const AppointMentService = {
     getAll: async (user_id) => {

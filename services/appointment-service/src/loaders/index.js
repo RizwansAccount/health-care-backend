@@ -1,5 +1,5 @@
 import expressLoader from "./express.js";
-import mongooseLoader from "./mongoose.js";
+import mongooseLoader from "../../../../db/mongoose.js";
 
 export default {
 	expressLoader,

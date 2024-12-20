@@ -26,7 +26,7 @@ export const AppointmentController = {
             const data = await AppointMentService.create(body);
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
-            return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error));
+            return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));
         }
     },
     updateSlot: async (req, res) => {

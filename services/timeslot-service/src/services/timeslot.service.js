@@ -1,4 +1,4 @@
-import { TimeSlotModel } from "../models/index.js";
+import { TimeSlotModel, UserModel } from "../../../../models/index.js";
 import moment from "moment";
 
 export const TimeSlotService = {
@@ -12,6 +12,12 @@ export const TimeSlotService = {
 
     create: async (doctorId, body) => {
         const { startDate, endDate, startTime, endTime, slotDuration } = body;
+
+        const isDoctor = await UserModel.findOne({_id : doctorId, role : 'doctor'});
+
+        if(!isDoctor) {
+            throw new Error("sorry! you don't have permission to create slots");
+        }
 
         const overlappingSlots = await TimeSlotModel.find({ doctor_id : doctorId, date: { $gte: startDate, $lte: endDate } });
 

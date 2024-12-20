@@ -1,4 +1,4 @@
-import { CodeServiceModel, UserModel } from "../models/index.js";
+import { CodeServiceModel, UserModel } from "../../../../models/index.js";
 import passwordHash from 'password-hash';
 import jwt from 'jsonwebtoken';
 import config from '../../../../config/index.js';
