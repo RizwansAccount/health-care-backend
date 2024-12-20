@@ -1,10 +1,18 @@
 import express from "express";
-import { TimeSlotContainer } from "../controllers/index.js";
+import { TimeSlotController } from "../controllers/index.js";
 
 const router = express.Router();
 
-router.post('/create', TimeSlotContainer.create);
+router.post('/:doctorId/create', TimeSlotController.create);
 
-router.get('/', TimeSlotContainer.getAll);
+router.get('/', TimeSlotController.getAll);
+
+router.get('/:id', TimeSlotController.getById);
+
+router.get('/doctor-timeslots/:doctorId', TimeSlotController.getDoctorSlots);
+
+router.patch('/:id', TimeSlotController.update);
+
+router.delete('/:id', TimeSlotController.delete);
 
 export default router;

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "../config/index.js";
-import { httpResponse } from "../../../../utils/index.js";
+import { httpResponse } from "../utils/index.js";
 
 export const authenticate = (req, res, next) => {
 	const token = req.header("authorization");
@@ -15,9 +15,7 @@ export const authenticate = (req, res, next) => {
 
 	try {
 		req.user = jwt.verify(bearerToken, config.env.jwtSecret);
-		// decoded payload will be available in req.user
 		next();
-		// if token is valid, then next() will be called
 	} catch (error) {
 		httpResponse.UNAUTHORIZED(res, "Token is not valid", "Invalid token.");
 	}
