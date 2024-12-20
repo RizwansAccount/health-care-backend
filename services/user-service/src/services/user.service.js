@@ -14,7 +14,12 @@ export const UserService = {
     },
 
     create: async (body) => {
-        let { password } = body;
+        let { email, password } = body;
+
+        const isUserExist = await UserModel.findOne({email});
+
+        if(isUserExist) { throw new Error('user already exists!') };
+
         password = passwordHash?.generate(password);
         return await UserModel.create({ ...body, password });
     },

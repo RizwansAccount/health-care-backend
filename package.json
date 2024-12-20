@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:user-service": "nodemon services/user-service/index.js",
-    "dev:appointment-service": "nodemon services/appointment-service/index.js",
-    "dev:timeslot-service": "nodemon services/timeslot-service/index.js",
-    "dev:all": "concurrently \"npm run dev:user-service\" \"npm run dev:appointment-service\" \"npm run dev:timeslot-service\" "
+    "dev:booking-service": "nodemon services/booking-service/index.js",
+    "dev:all": "concurrently \"npm run dev:user-service\" \"npm run dev:booking-service\""
   },
   "keywords": [],
   "author": "",
