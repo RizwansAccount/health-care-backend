@@ -6,7 +6,7 @@ import { transporterEmail, getMailOptions, getRandomCode } from '../../../../uti
 
 export const UserService = {
     getAll: async () => {
-        return await UserModel.find();
+        return await UserModel.find({}, {password : 0});
     },
 
     getById: async (id) => {

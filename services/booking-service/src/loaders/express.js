@@ -11,5 +11,5 @@ export default async function expressLoader({ app }) {
 	app.use(express.json());
 	app.use(express.urlencoded({ extended : true }));
 
-	app.use("/api/appointments", authenticate, protectedRouter);
+	app.use("/api/booking", authenticate, protectedRouter);
 }
