@@ -52,7 +52,8 @@ export const TimeSlotController = {
         try {
             const doctorId = req.params.doctorId;
             const status = req.query.status;
-            const data = await TimeSlotService.getDoctorSlots(doctorId, status);
+            const date = req.query.date;
+            const data = await TimeSlotService.getDoctorSlots(doctorId, status, date);
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, {}, (error.message || error));

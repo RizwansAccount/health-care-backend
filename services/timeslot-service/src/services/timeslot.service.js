@@ -13,11 +13,17 @@ export const TimeSlotService = {
     create: async (doctorId, body) => {
         const { startDate, endDate, startTime, endTime, slotDuration } = body;
 
+        const overlappingSlots = await TimeSlotModel.find({ doctor_id : doctorId, date: { $gte: startDate, $lte: endDate } });
+
+        if (overlappingSlots?.length > 0) {
+            throw new Error('Time slots already exist in this specific date range');
+        };
+
         const startDateMoment = moment(startDate, 'YYYY-MM-DD');
         const endDateMoment = moment(endDate, 'YYYY-MM-DD');
 
         if (!startDateMoment.isValid() || !endDateMoment.isValid() || startDateMoment.isAfter(endDateMoment)) {
-            return { message: 'Invalid date range' };
+            throw new Error('Invalid date range');
         }
 
         const duration = parseInt(slotDuration, 10);
@@ -29,7 +35,7 @@ export const TimeSlotService = {
             const end = moment(endTime, 'hh:mm A');
 
             if (!start.isValid() || !end.isValid() || start.isSameOrAfter(end)) {
-                return { message: `Invalid time range for ${currentDate.format('YYYY-MM-DD')}` }
+                throw new Error(`Invalid time range for ${currentDate.format('YYYY-MM-DD')}`);
             }
 
             let currentTime = start;
@@ -50,10 +56,13 @@ export const TimeSlotService = {
     delete: async (id) => {
         return await TimeSlotModel.findByIdAndDelete(id);
     },
-    getDoctorSlots: async (doctorId, status) => {
-        let searchQuery = {doctor_id : doctorId};
-        if(status) {
-            searchQuery = {...searchQuery, status}
+    getDoctorSlots: async (doctorId, status, date) => {
+        let searchQuery = { doctor_id: doctorId };
+        if (status) {
+            searchQuery = { ...searchQuery, status }
+        }
+        if (date) {
+            searchQuery = { ...searchQuery, date }
         }
         return await TimeSlotModel.find(searchQuery);
     },
